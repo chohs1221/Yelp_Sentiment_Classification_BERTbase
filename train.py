@@ -87,12 +87,15 @@ EVAL_BATCH_SIZE=256
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 2
+TRAIN_EPOCH = 3
 
 
 #----------------------------------------WANDB----------------------------------------
-wandb.init(project="groomProject1", entity="chohs1221")
-wandb.run.name = 'xlnet2_lr' + str(LEARNING_RATE)
+# wandb.init(project="groomProject1", entity="chohs1221")
+wandb.init(project="test-project", entity="goorm_team_2")
+
+RUNNAME = 'bert_ep3_re_' + str(LEARNING_RATE)
+wandb.run.name = RUNNAME
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
 wandb.config.batch_size = TRAIN_BATCH_SIZE
@@ -127,10 +130,10 @@ except:
 
 #----------------------------------------DATA PREPROCESSING----------------------------------------
 # Remove '_num_', !@#$ ... from datasets
-# train_pos = regular(train_pos)
-# train_neg = regular(train_pos)
-# dev_pos = regular(train_pos)
-# dev_neg = regular(train_pos)
+train_pos = regular(train_pos)
+train_neg = regular(train_neg)
+dev_pos = regular(dev_pos)
+dev_neg = regular(dev_neg)
 
 #----------------------------------------TOKENIZE----------------------------------------
 # seperate encoding to preprocess data before encoding
@@ -285,20 +288,20 @@ for epoch in range(TRAIN_EPOCH):
                     highest_valid_acc = mean_val_acc
                     print('ACCURACY for highest valid acc: ', mean_val_acc)
                     print('LOSS for lowest valid acc: ', mean_val_loss)
-                    # model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
+                    model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)) + RUNNAME)
 
                 elif lowest_valid_loss > mean_val_loss:
                     lowest_valid_loss = mean_val_loss
                     print('ACCURACY for lowest valid loss: ', mean_val_acc)
                     print('LOSS for lowest valid loss: ', mean_val_loss)
-                    # model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
+                    model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)) + RUNNAME)
                                         
                 model.train()
 
 
 #----------------------------------------SAVE SCORES----------------------------------------
 # using pickle, save dump accuracy, loss file
-accloss_filename = 'accloss' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)) + '.p'
+accloss_filename = 'accloss' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)) + RUNNAME + '.p'
 with open('./scores/' + accloss_filename,'wb') as f:
     pickle.dump(train_acc, f)
     pickle.dump(train_loss, f)

@@ -43,11 +43,11 @@ def test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name='test_no
     test_df = pd.read_csv('./datasets/' + file_name + '.csv')
     test_df_ = test_df['Id']
 
-    # test = [sent.lower() for sent in test_df_]
-    test = [sent for sent in test_df_]
+    test = [sent.lower() for sent in test_df_]
+    # test = [sent for sent in test_df_]
 
 
-    # test = regular(test)
+    test = regular(test)
 
     test_dataset = [np.array(tokenizer.encode(line)) for line in test]
 
@@ -107,4 +107,4 @@ if __name__ == '__main__':
     model.to(device)
     
     # test_model(model, tokenizer, 0, 0, file_name='test_no_label', device='cuda')
-    test_model(model, tokenizer, int(MODEL_NAME[-4:]), int(MODEL_NAME[-4:]), file_name='test_no_label', device='cuda')el(model, tokenizer, int(MODEL_NAME[-4:]), int(MODEL_NAME[-4:]), file_name='test_no_label', device='cuda')
+    predictions = test_model(model, tokenizer, int(MODEL_NAME[-4:]), int(MODEL_NAME[-4:]), file_name='test_no_label', device='cuda')
