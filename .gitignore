@@ -9,9 +9,4 @@ dump_models_tokenizer
 scores
 submissions
 wandb
-<<<<<<< HEAD
 stdout.txt
-=======
-stdout.txt
-
->>>>>>> a276db7324688919f66b41a3801e2fc014889596
