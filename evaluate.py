@@ -43,11 +43,11 @@ def test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name='test_no
     test_df = pd.read_csv('./datasets/' + file_name + '.csv')
     test_df_ = test_df['Id']
 
-    # test = [sent.lower() for sent in test_df_]
-    test = [sent for sent in test_df_]
+    test = [sent.lower() for sent in test_df_]
+    # test = [sent for sent in test_df_]
 
 
-    # test = regular(test)
+    test = regular(test)
 
     test_dataset = [np.array(tokenizer.encode(line)) for line in test]
 
@@ -84,6 +84,8 @@ def test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name='test_no
 
     test_df['Category'] = predictions
     test_df.to_csv('./submissions/sub' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)) + '.csv', index=False)
+
+    return predictions
 
 
 if __name__ == '__main__':
