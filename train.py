@@ -308,7 +308,7 @@ with open('./scores/' + accloss_filename,'wb') as f:
 
 #----------------------------------------TEST----------------------------------------
 # test model
-test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name = 'test_no_label', device='cuda')
+predictions = test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name = 'test_no_label', device='cuda')
 
 
 #----------------------------------------SCORE VISUALIZE----------------------------------------
