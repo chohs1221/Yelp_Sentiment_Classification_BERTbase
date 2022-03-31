@@ -129,7 +129,7 @@ except:
 
 
 #----------------------------------------DATA PREPROCESSING----------------------------------------
-# Remove '_num_', !@#$ ... from datasets
+# Remove '_num_', special symbols(!@#%$% ..) in datasets
 # train_pos = regular(train_pos)
 # train_neg = regular(train_neg)
 # dev_pos = regular(dev_pos)
