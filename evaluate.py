@@ -43,7 +43,7 @@ def test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name='test_no
     test_df = pd.read_csv('./datasets/' + file_name + '.csv')
     test_df_ = test_df['Id']
 
-    test = [sent.lower() for sent in test_df_]
+    # test = [sent.lower() for sent in test_df_]
     test = [sent for sent in test_df_]
 
 

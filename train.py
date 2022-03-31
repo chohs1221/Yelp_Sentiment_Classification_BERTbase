@@ -87,12 +87,12 @@ EVAL_BATCH_SIZE=256
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 3
+TRAIN_EPOCH = 2
 
 
 #----------------------------------------WANDB----------------------------------------
 wandb.init(project="groomProject1", entity="chohs1221")
-wandb.run.name = 'xlnet_lr' + str(LEARNING_RATE)
+wandb.run.name = 'xlnet2_lr' + str(LEARNING_RATE)
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
 wandb.config.batch_size = TRAIN_BATCH_SIZE
