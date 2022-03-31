@@ -57,9 +57,9 @@ seed_everything(42)
 
 #----------------------------------------MODEL----------------------------------------
 # test various models
-MODEL_NAME = 'bert-base-uncased'
+# MODEL_NAME = 'bert-base-uncased'
 # MODEL_NAME = 'bert-large-uncased'
-# MODEL_NAME = 'xlnet-base-cased'
+MODEL_NAME = 'xlnet-base-cased'
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 assert str(device) == 'cuda'
@@ -87,12 +87,12 @@ EVAL_BATCH_SIZE=256
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 3
+TRAIN_EPOCH = 2
 
 
 #----------------------------------------WANDB----------------------------------------
 wandb.init(project="groomProject1", entity="chohs1221")
-wandb.run.name = 'bert3_lr' + str(LEARNING_RATE) + '_re'
+wandb.run.name = 'xlnet2_lr' + str(LEARNING_RATE)
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
 wandb.config.batch_size = TRAIN_BATCH_SIZE
@@ -127,10 +127,10 @@ except:
 
 #----------------------------------------DATA PREPROCESSING----------------------------------------
 # Remove '_num_', !@#$ ... from datasets
-train_pos = regular(train_pos)
-train_neg = regular(train_pos)
-dev_pos = regular(train_pos)
-dev_neg = regular(train_pos)
+# train_pos = regular(train_pos)
+# train_neg = regular(train_pos)
+# dev_pos = regular(train_pos)
+# dev_neg = regular(train_pos)
 
 #----------------------------------------TOKENIZE----------------------------------------
 # seperate encoding to preprocess data before encoding
@@ -285,13 +285,13 @@ for epoch in range(TRAIN_EPOCH):
                     highest_valid_acc = mean_val_acc
                     print('ACCURACY for highest valid acc: ', mean_val_acc)
                     print('LOSS for lowest valid acc: ', mean_val_loss)
-                    model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
+                    # model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
 
                 elif lowest_valid_loss > mean_val_loss:
                     lowest_valid_loss = mean_val_loss
                     print('ACCURACY for lowest valid loss: ', mean_val_acc)
                     print('LOSS for lowest valid loss: ', mean_val_loss)
-                    model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
+                    # model.save_pretrained('./best_models/model' + str(int(mean_val_acc*100)) + str(int(mean_val_loss*1000)))
                                         
                 model.train()
 
@@ -308,7 +308,7 @@ with open('./scores/' + accloss_filename,'wb') as f:
 
 #----------------------------------------TEST----------------------------------------
 # test model
-predictions = test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name = 'test_no_label', device='cuda')
+test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name = 'test_no_label', device='cuda')
 
 
 #----------------------------------------SCORE VISUALIZE----------------------------------------
