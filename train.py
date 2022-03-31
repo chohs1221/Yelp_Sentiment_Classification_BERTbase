@@ -57,9 +57,9 @@ seed_everything(42)
 
 #----------------------------------------MODEL----------------------------------------
 # test various models
-# MODEL_NAME = 'bert-base-uncased'
+MODEL_NAME = 'bert-base-uncased'
 # MODEL_NAME = 'bert-large-uncased'
-MODEL_NAME = 'xlnet-base-cased'
+# MODEL_NAME = 'xlnet-base-cased'
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 assert str(device) == 'cuda'
@@ -87,14 +87,14 @@ EVAL_BATCH_SIZE=256
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 3
+TRAIN_EPOCH = 10
 
 
 #----------------------------------------WANDB----------------------------------------
 # wandb.init(project="groomProject1", entity="chohs1221")
 wandb.init(project="test-project", entity="goorm_team_2")
 
-RUNNAME = 'bert_ep3_re_' + str(LEARNING_RATE)
+RUNNAME = 'bert_ep10_' + str(LEARNING_RATE)
 wandb.run.name = RUNNAME
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
@@ -130,11 +130,15 @@ except:
 
 #----------------------------------------DATA PREPROCESSING----------------------------------------
 # Remove '_num_', !@#$ ... from datasets
-train_pos = regular(train_pos)
-train_neg = regular(train_neg)
-dev_pos = regular(dev_pos)
-dev_neg = regular(dev_neg)
+# train_pos = regular(train_pos)
+# train_neg = regular(train_neg)
+# dev_pos = regular(dev_pos)
+# dev_neg = regular(dev_neg)
 
+# use train, valid datasets for training
+# train_pos = train_pos + dev_pos
+# train_neg = train_neg + dev_neg
+# len(train_pos)
 #----------------------------------------TOKENIZE----------------------------------------
 # seperate encoding to preprocess data before encoding
 train_pos = [tokenizer.encode(line) for line in train_pos]

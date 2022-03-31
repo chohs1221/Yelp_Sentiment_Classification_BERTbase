@@ -47,7 +47,7 @@ def test_model(model, tokenizer, mean_val_acc, mean_val_loss, file_name='test_no
     # test = [sent for sent in test_df_]
 
 
-    test = regular(test)
+    # test = regular(test)
 
     test_dataset = [np.array(tokenizer.encode(line)) for line in test]
 
