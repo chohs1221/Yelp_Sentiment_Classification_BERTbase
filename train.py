@@ -11,8 +11,10 @@ import torch
 from torch.nn.utils.rnn import pad_sequence
 
 from transformers import (
-    AdamW
+    AdamW,
+    Adafactor,
 )
+from transformers.optimization import get_cosine_schedule_with_warmup
 
 import wandb
 
@@ -84,17 +86,28 @@ model.to(device)
 #----------------------------------------HYPER PARAMETERS----------------------------------------
 TRAIN_BATCH_SIZE=256
 EVAL_BATCH_SIZE=256
+TRAIN_EPOCH = 1
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 3
+# optimizer = Adafactor(model.parameters(), lr=LEARNING_RATE,
+#                     eps=(1e-30, 1e-3), decay_rate=-0.8, clip_threshold=1.0,
+#                     beta1=None,
+#                     weight_decay=0.0,
+#                     relative_step=False,
+#                     scale_parameter=False,
+#                     warmup_init=False,)
+scheduler = get_cosine_schedule_with_warmup(optimizer,
+                                            num_warmup_steps=int(1732*TRAIN_EPOCH*0.1),
+                                            num_training_steps=1732*TRAIN_EPOCH)
+
 
 
 #----------------------------------------WANDB----------------------------------------
-wandb.init(project="my-test-project", entity="chohs1221")
-# wandb.init(project="test-project", entity="goorm_team_2")
+# wandb.init(project="my-test-project", entity="chohs1221")
+wandb.init(project="project1", entity="goorm_team_2")
 
-RUNNAME = 'final_bert_ep_' + str(LEARNING_RATE)
+RUNNAME = 'bert_ep1_sche' + str(LEARNING_RATE)
 wandb.run.name = RUNNAME
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
@@ -233,6 +246,7 @@ for epoch in range(TRAIN_EPOCH):
             
             loss.backward()
             optimizer.step()
+            scheduler.step()
             optimizer.zero_grad()
 
 
