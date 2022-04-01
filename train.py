@@ -87,14 +87,14 @@ EVAL_BATCH_SIZE=256
 
 LEARNING_RATE = 5e-5
 optimizer = AdamW(model.parameters(), lr=LEARNING_RATE)
-TRAIN_EPOCH = 10
+TRAIN_EPOCH = 3
 
 
 #----------------------------------------WANDB----------------------------------------
-# wandb.init(project="groomProject1", entity="chohs1221")
-wandb.init(project="test-project", entity="goorm_team_2")
+wandb.init(project="my-test-project", entity="chohs1221")
+# wandb.init(project="test-project", entity="goorm_team_2")
 
-RUNNAME = 'bert_ep10_' + str(LEARNING_RATE)
+RUNNAME = 'final_bert_ep_' + str(LEARNING_RATE)
 wandb.run.name = RUNNAME
 wandb.config.learning_rate = LEARNING_RATE
 wandb.config.epochs = TRAIN_EPOCH
