@@ -21,12 +21,12 @@
 ## 코드   
 [Main Code in .ipynb version](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/Yelp_Sentiment_Classification.ipynb)  
 [Main Code in .py version](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/train.py)  
-[Costom Module for Visualization](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/visualize_score.py)  
-[Costom Module for test](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/evaluate.py)  
-[Costom Module for loading models and save dump](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/dump_models.py)  
-[Costom Module for loading datasets and save dump](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/dump_datasets.py)  
-[Costom Module for data preprocessing](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/data_processing.py)  
-[Costom Module for compute accuracy](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/compute.py)  
+[Custom Module .py file for Visualization](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/visualize_score.py)  
+[Custom Module .py file for test](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/evaluate.py)  
+[Custom Module .py file for loading models and saving dump files](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/dump_models.py)  
+[Custom Module .py file for loading datasets and saving dump files](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/dump_datasets.py)  
+[Custom Module .py file for data preprocessing](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/data_processing.py)  
+[Custom Module .py file for computing accuracy](https://github.com/chohs1221/Yelp_Sentiment_Classification_BERTbase/blob/master/compute.py)  
 
 ## 캐글 링크  
 [KAGGLE PAGE LINK](https://www.kaggle.com/competitions/goorm-nlp-projects-3rd)  
