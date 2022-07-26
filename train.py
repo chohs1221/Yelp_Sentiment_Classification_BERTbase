@@ -104,8 +104,8 @@ scheduler = get_cosine_schedule_with_warmup(optimizer,
 
 
 #----------------------------------------WANDB----------------------------------------
-# wandb.init(project="my-test-project", entity="chohs1221")
-wandb.init(project="project1", entity="goorm_team_2")
+wandb.init(project="my-test-project", entity="chohs1221")
+# wandb.init(project="project1", entity="goorm_team_2")
 
 RUNNAME = 'bert_ep1_sche' + str(LEARNING_RATE)
 wandb.run.name = RUNNAME
